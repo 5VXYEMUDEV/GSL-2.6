@@ -83,10 +83,14 @@ SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_block}
     ${SRC_LIST_SubSrc_bspline}
     ${SRC_LIST_SubSrc_bst}
-    ${SRC_LIST_Sublib_cblas}
+    # ${SRC_LIST_Sublib_cblas}  // Use TARGET_LINK_LIBRARIES to be involved
     ${SRC_LIST_SubSrc_cdf}
     ${SRC_LIST_SubSrc_cheb}
     ${SRC_LIST_SubSrc_combination}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
+
+TARGET_LINK_LIBRARIES( gsl
+    PUBLIC cblas 
+)
