@@ -33,7 +33,7 @@ IF (MSVC)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/MSVC
     )
-ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+ELSEIF (__linux__)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/Unix
     )
