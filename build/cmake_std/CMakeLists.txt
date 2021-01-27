@@ -8,6 +8,8 @@ MESSAGE (STATUS "Dev-Root SOURCE dir " ${PROJECT_SOURCE_DIR})
 
 include(cmake/Require_CMAKE_BUILD_TYPE.cmake)
 
+include(cmake/display_cmake_variables.cmake)
+
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/../lib)
 IF (MSVC)
     SET (LIBRARY_OUTPUT_PATH ${LIBRARY_OUTPUT_PATH}/${CMAKE_GENERATOR_PLATFORM})
