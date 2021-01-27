@@ -27,10 +27,12 @@ IF (MSVC)
     )
 ENDIF ()
 
+# >>>>>>>> blas >>>>>>>>
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
 )
+# <<<<<<<< blas <<<<<<<<
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
