@@ -11,5 +11,5 @@ ELSE()
         include(CmdTips_Require_CMAKE_BUILD_TYPE_Default.cmake)
     ENDIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     
-    MESSAGE( FATAL_ERROR "" )
+    MESSAGE( FATAL_ERROR "Please provide CMAKE_BUILD_TYPE." )
 ENDIF (CMAKE_BUILD_TYPE MATCHES Debug)
