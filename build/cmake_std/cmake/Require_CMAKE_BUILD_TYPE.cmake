@@ -6,9 +6,9 @@ ELSEIF (CMAKE_BUILD_TYPE MATCHES Release)
 ELSE()
     
     IF (CMAKE_SYSTEM_NAME MATCHES "Windows")
-        include(CmdTips_Require_CMAKE_BUILD_TYPE_Win32.cmake)
+        include(cmake/CmdTips_Require_CMAKE_BUILD_TYPE_Win32.cmake)
     ELSE()
-        include(CmdTips_Require_CMAKE_BUILD_TYPE_Default.cmake)
+        include(cmake/CmdTips_Require_CMAKE_BUILD_TYPE_Default.cmake)
     ENDIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
     
     MESSAGE( FATAL_ERROR "Please provide CMAKE_BUILD_TYPE." )
