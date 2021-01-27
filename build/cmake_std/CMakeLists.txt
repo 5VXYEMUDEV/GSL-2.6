@@ -29,10 +29,12 @@ INCLUDE_DIRECTORIES(
     ${REPO_Dev_DIR}/source
 )
 
+# Ref: https://cmake.org/cmake/help/latest/variable/MSVC.html
 IF (MSVC)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/MSVC
     )
+# Ref: https://cmake.org/cmake/help/latest/variable/UNIX.html
 ELSEIF (UNIX)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/Unix
