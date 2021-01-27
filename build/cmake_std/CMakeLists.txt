@@ -19,8 +19,13 @@ MESSAGE ( STATUS "REPO_Dev_DIR: " ${REPO_Dev_DIR} )
 
 INCLUDE_DIRECTORIES(
     ${REPO_Dev_DIR}/include
-    ../../Code/Utilities
 )
+
+IF (MSVC)
+    INCLUDE_DIRECTORIES(
+        ${REPO_Dev_DIR}/platform/MSVC
+    )
+ENDIF ()
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 
