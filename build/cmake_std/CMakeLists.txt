@@ -36,7 +36,7 @@ IF (MSVC)
 ENDIF ()
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
-list(REMOVE_ITEM SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/test*.c )
+list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
 
 SET ( SRC_LIST_SubSrc_block
     ${REPO_Src_DIR}/block/block.c
@@ -44,9 +44,13 @@ SET ( SRC_LIST_SubSrc_block
     ${REPO_Src_DIR}/block/init.c
 )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_bspline ${REPO_Src_DIR}/bspline/*.c )
+list(FILTER SRC_LIST_SubSrc_bspline EXCLUDE REGEX ".*test.*")
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
+    ${SRC_LIST_SubSrc_bspline}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
