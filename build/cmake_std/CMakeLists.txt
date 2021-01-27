@@ -75,6 +75,9 @@ list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*beta_inc.*")
 file(GLOB_RECURSE SRC_LIST_SubSrc_cheb ${REPO_Src_DIR}/cheb/*.c )
 list(FILTER SRC_LIST_SubSrc_cheb EXCLUDE REGEX ".*test.*")
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_combination ${REPO_Src_DIR}/combination/*.c )
+list(FILTER SRC_LIST_SubSrc_combination EXCLUDE REGEX ".*test.*")
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
@@ -83,6 +86,7 @@ SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_Sublib_cblas}
     ${SRC_LIST_SubSrc_cdf}
     ${SRC_LIST_SubSrc_cheb}
+    ${SRC_LIST_SubSrc_combination}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
