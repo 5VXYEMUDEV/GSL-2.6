@@ -55,12 +55,16 @@ file(GLOB_RECURSE SRC_LIST_Sublib_cblas ${REPO_Src_DIR}/cblas/*.c )
 list(FILTER SRC_LIST_Sublib_cblas EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( cblas STATIC ${SRC_LIST_Sublib_cblas} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_cdf ${REPO_Src_DIR}/cdf/*.c )
+list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*test.*")
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
     ${SRC_LIST_SubSrc_bspline}
     ${SRC_LIST_SubSrc_bst}
     ${SRC_LIST_Sublib_cblas}
+    ${SRC_LIST_SubSrc_cdf}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
