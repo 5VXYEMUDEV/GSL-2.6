@@ -60,7 +60,7 @@ SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_block}
     ${SRC_LIST_SubSrc_bspline}
     ${SRC_LIST_SubSrc_bst}
+    ${SRC_LIST_Sublib_cblas}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
-TARGET_LINK_LIBRARIES( gsl cblas )
