@@ -57,6 +57,7 @@ ADD_LIBRARY( cblas STATIC ${SRC_LIST_Sublib_cblas} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_cdf ${REPO_Src_DIR}/cdf/*.c )
 list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*beta_inc.*")
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
