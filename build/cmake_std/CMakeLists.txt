@@ -38,8 +38,11 @@ ENDIF ()
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 list(REMOVE_ITEM SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/test*.c )
 
-file(GLOB_RECURSE SRC_LIST_SubSrc_block ${REPO_Src_DIR}/block/*.c )
-list(FILTER SRC_LIST_SubSrc_block EXCLUDE REGEX ".*test.*")
+SET ( SRC_LIST_SubSrc_block
+    ${REPO_Src_DIR}/block/block.c
+    ${REPO_Src_DIR}/block/file.c
+    ${REPO_Src_DIR}/block/init.c
+)
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
