@@ -29,6 +29,7 @@ ENDIF ()
 
 # >>>>>>>> blas >>>>>>>>
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
+list(REMOVE_ITEM SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/test*.c )
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
