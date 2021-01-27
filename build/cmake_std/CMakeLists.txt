@@ -29,8 +29,8 @@ INCLUDE_DIRECTORIES(
     ${REPO_Dev_DIR}/source
 )
 
-# Ref: https://cmake.org/cmake/help/latest/variable/MSVC.html
-IF (MSVC)
+# Ref: https://cmake.org/cmake/help/latest/variable/WIN32.html
+IF (WIN32)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/MSVC
     )
