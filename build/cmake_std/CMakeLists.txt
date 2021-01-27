@@ -47,10 +47,14 @@ SET ( SRC_LIST_SubSrc_block
 file(GLOB_RECURSE SRC_LIST_SubSrc_bspline ${REPO_Src_DIR}/bspline/*.c )
 list(FILTER SRC_LIST_SubSrc_bspline EXCLUDE REGEX ".*test.*")
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_bst ${REPO_Src_DIR}/bst/*.c )
+list(FILTER SRC_LIST_SubSrc_bst EXCLUDE REGEX ".*test.*")
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
     ${SRC_LIST_SubSrc_bspline}
+    ${SRC_LIST_SubSrc_bst}
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
