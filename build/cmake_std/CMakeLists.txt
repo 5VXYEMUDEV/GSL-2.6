@@ -33,6 +33,10 @@ IF (MSVC)
     INCLUDE_DIRECTORIES(
         ${REPO_Dev_DIR}/platform/MSVC
     )
+ELSEIF (__linux__)
+    INCLUDE_DIRECTORIES(
+        ${REPO_Dev_DIR}/platform/Unix
+    )
 ENDIF ()
 
 
