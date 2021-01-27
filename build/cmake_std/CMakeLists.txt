@@ -19,6 +19,7 @@ MESSAGE ( STATUS "REPO_Dev_DIR: " ${REPO_Dev_DIR} )
 
 INCLUDE_DIRECTORIES(
     ${REPO_Dev_DIR}/include
+    ${REPO_Dev_DIR}/source
 )
 
 IF (MSVC)
@@ -27,13 +28,15 @@ IF (MSVC)
     )
 ENDIF ()
 
-# >>>>>>>> blas >>>>>>>>
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 list(REMOVE_ITEM SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/test*.c )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_block ${REPO_Src_DIR}/block/*.c )
+list(FILTER SRC_LIST_SubSrc_block EXCLUDE REGEX ".*test.*")
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
+    ${SRC_LIST_SubSrc_block}
 )
-# <<<<<<<< blas <<<<<<<<
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
