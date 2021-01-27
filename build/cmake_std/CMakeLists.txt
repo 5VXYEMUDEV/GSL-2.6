@@ -35,6 +35,7 @@ IF (MSVC)
     )
 ENDIF ()
 
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
 
@@ -49,6 +50,10 @@ list(FILTER SRC_LIST_SubSrc_bspline EXCLUDE REGEX ".*test.*")
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_bst ${REPO_Src_DIR}/bst/*.c )
 list(FILTER SRC_LIST_SubSrc_bst EXCLUDE REGEX ".*test.*")
+
+file(GLOB_RECURSE SRC_LIST_Sublib_cblas ${REPO_Src_DIR}/cblas/*.c )
+list(FILTER SRC_LIST_Sublib_cblas EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( cblas STATIC ${SRC_LIST_Sublib_cblas} )
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
