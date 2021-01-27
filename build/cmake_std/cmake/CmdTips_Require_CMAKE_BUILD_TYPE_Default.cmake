@@ -1,0 +1,11 @@
+# Prompt to require CMAKE_BUILD_TYPE parameter in [Debug, Release]
+MESSAGE( STATUS "=========================================================================" )
+MESSAGE( STATUS "Please provide CMAKE_BUILD_TYPE command line parameter." )
+MESSAGE( STATUS "For Example:" )
+MESSAGE( STATUS "--- For Debug ----" )
+MESSAGE( STATUS "    cmake -D CMAKE_BUILD_TYPE=Debug ." )
+MESSAGE( STATUS "    cmake --build ." )
+MESSAGE( STATUS "--- For Release ----" )
+MESSAGE( STATUS "    cmake -D CMAKE_BUILD_TYPE=Release ." )
+MESSAGE( STATUS "    cmake --build ." )
+MESSAGE( STATUS "=========================================================================" )

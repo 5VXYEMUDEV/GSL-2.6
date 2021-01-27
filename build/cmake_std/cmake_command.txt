@@ -1,0 +1,10 @@
+# for Windows OS x64 platform Debug configuration
+
+cmake -G "Visual Studio 16 2019" -A x64 -D CMAKE_BUILD_TYPE=Debug .
+cmake --build .
+
+
+# for Windows OS x64 platform Release configuration
+
+cmake -G "Visual Studio 16 2019" -A x64 -D CMAKE_BUILD_TYPE=Release .
+cmake --build .
