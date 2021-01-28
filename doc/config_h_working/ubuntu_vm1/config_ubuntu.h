@@ -1,8 +1,9 @@
-/* config.h.  Generated from config.h.in by configure.  */
-/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+#ifndef CONFIG_H
+#define CONFIG_H
 
 /* Disable deprecated functions and enums while building */
-/* #undef GSL_DISABLE_DEPRECATED */
+#define GSL_DISABLE_DEPRECATED 1
 
 /* Define if you have inline with C99 behavior */
 #define HAVE_C99_INLINE 1
@@ -34,6 +35,7 @@
 /* Define to 1 if you have the declaration of `finite', and to 0 if you don't.
    */
 #define HAVE_DECL_FINITE 1
+/* #define finite _finite */
 
 /* Define to 1 if you have the declaration of `fprnd_t', and to 0 if you
    don't. */
@@ -190,7 +192,7 @@
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
-/* #undef inline */
+/* #define inline __inline */
 #endif
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
@@ -307,3 +309,4 @@
 
 #define RETURN_IF_NULL(x) if (!x) { return ; }
 
+#endif
