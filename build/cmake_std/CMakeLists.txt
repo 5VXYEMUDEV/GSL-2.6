@@ -144,3 +144,12 @@ TARGET_LINK_LIBRARIES( test_block
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_bspline
+    ${REPO_Src_DIR}/bspline/test.c
+)
+ADD_EXECUTABLE( test_bspline ${SRC_LIST_TestSuite_bspline} )
+TARGET_LINK_LIBRARIES( test_bspline 
+    PRIVATE test 
+    PRIVATE gsl 
+)
