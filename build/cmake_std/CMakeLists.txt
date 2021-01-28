@@ -10,12 +10,15 @@ include(cmake/Require_CMAKE_BUILD_TYPE.cmake)
 
 include(cmake/display_cmake_variables.cmake)
 
+SET(EXECUTABLE_OUTPUT_PATH  ${PROJECT_BINARY_DIR}/../bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/../lib)
 IF (MSVC)
+    SET (EXECUTABLE_OUTPUT_PATH ${EXECUTABLE_OUTPUT_PATH}/${CMAKE_GENERATOR_PLATFORM})
     SET (LIBRARY_OUTPUT_PATH ${LIBRARY_OUTPUT_PATH}/${CMAKE_GENERATOR_PLATFORM})
 ELSE()
     STRING(COMPARE NOTEQUAL ${CMAKE_BUILD_TYPE} "" IS_BUILD_TYPE_NOT_EMPTY)
     IF (IS_BUILD_TYPE_NOT_EMPTY)
+        SET (EXECUTABLE_OUTPUT_PATH ${EXECUTABLE_OUTPUT_PATH}/${CMAKE_BUILD_TYPE})
         SET (LIBRARY_OUTPUT_PATH ${LIBRARY_OUTPUT_PATH}/${CMAKE_BUILD_TYPE})
     ENDIF ()
 ENDIF ()
@@ -71,6 +74,7 @@ ADD_LIBRARY( cblas STATIC ${SRC_LIST_Sublib_cblas} )
 file(GLOB_RECURSE SRC_LIST_SubSrc_cdf ${REPO_Src_DIR}/cdf/*.c )
 list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_cdf EXCLUDE REGEX ".*beta_inc.*")
+ADD_LIBRARY( cdf STATIC ${SRC_LIST_SubSrc_cdf} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_cheb ${REPO_Src_DIR}/cheb/*.c )
 list(FILTER SRC_LIST_SubSrc_cheb EXCLUDE REGEX ".*test.*")
@@ -84,7 +88,7 @@ SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_bspline}
     ${SRC_LIST_SubSrc_bst}
     # ${SRC_LIST_Sublib_cblas}  // Use TARGET_LINK_LIBRARIES to be involved
-    ${SRC_LIST_SubSrc_cdf}
+    # ${SRC_LIST_SubSrc_cdf}    // Use TARGET_LINK_LIBRARIES to be involved
     ${SRC_LIST_SubSrc_cheb}
     ${SRC_LIST_SubSrc_combination}
 )
@@ -92,5 +96,7 @@ SET ( SRC_LIST_LIB_GSL
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
 
 TARGET_LINK_LIBRARIES( gsl
-    PUBLIC cblas 
+    INTERFACE cblas 
+    INTERFACE cdf 
 )
+
