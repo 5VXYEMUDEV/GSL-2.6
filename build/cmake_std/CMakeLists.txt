@@ -111,5 +111,5 @@ TARGET_LINK_LIBRARIES( gsl
 # Test
 # ===========================================================================
 
-file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
-list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
+file(GLOB_RECURSE SRC_LIST_SubTestSrc_test ${REPO_Src_DIR}/test/*.c )
+ADD_LIBRARY( test STATIC ${SRC_LIST_SubTestSrc_test} )
