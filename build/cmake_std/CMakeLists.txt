@@ -107,7 +107,7 @@ ADD_LIBRARY( sys STATIC ${SRC_LIST_SubSrc_sys} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_vector ${REPO_Src_DIR}/vector/*.c )
 list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*test.*")
-list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*source.*")
+list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 
 SET ( SRC_LIST_LIB_GSL
