@@ -119,5 +119,6 @@ SET ( SRC_LIST_TestSuite_block
 )
 ADD_EXECUTABLE( test_block ${SRC_LIST_SubTestSrc_test} )
 TARGET_LINK_LIBRARIES( test_block 
+    PRIVATE test 
     PRIVATE gsl 
 )
