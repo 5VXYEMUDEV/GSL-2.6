@@ -87,6 +87,11 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_combination ${REPO_Src_DIR}/combination/*.c )
 list(FILTER SRC_LIST_SubSrc_combination EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( combination STATIC ${SRC_LIST_SubSrc_combination} )
 
+
+file(GLOB_RECURSE SRC_LIST_SubSrc_sys ${REPO_Src_DIR}/sys/*.c )
+list(FILTER SRC_LIST_SubSrc_sys EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( sys STATIC ${SRC_LIST_SubSrc_sys} )
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
@@ -105,6 +110,8 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE cdf 
     INTERFACE cheb 
     INTERFACE combination 
+
+    INTERFACE sys 
 )
 
 # ===========================================================================
