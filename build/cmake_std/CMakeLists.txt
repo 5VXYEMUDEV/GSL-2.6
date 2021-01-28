@@ -101,6 +101,11 @@ SET ( SRC_LIST_SubSrc_ieee_utils
 )
 ADD_LIBRARY( ieee_utils STATIC ${SRC_LIST_SubSrc_ieee_utils} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_linalg ${REPO_Src_DIR}/linalg/*.c )
+list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*test.*")
+# list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*_source\.c")
+ADD_LIBRARY( linalg STATIC ${SRC_LIST_SubSrc_linalg} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_matrix ${REPO_Src_DIR}/matrix/*.c )
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
@@ -136,6 +141,7 @@ TARGET_LINK_LIBRARIES( gsl
 
     INTERFACE err 
     INTERFACE ieee_utils
+    INTERFACE linalg
     INTERFACE matrix
     INTERFACE sys 
     INTERFACE vector 
