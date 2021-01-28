@@ -113,6 +113,11 @@ list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
+list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*_source\.c")
+ADD_LIBRARY( statistics STATIC ${SRC_LIST_SubSrc_statistics} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_sys ${REPO_Src_DIR}/sys/*.c )
 list(FILTER SRC_LIST_SubSrc_sys EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( sys STATIC ${SRC_LIST_SubSrc_sys} )
@@ -145,6 +150,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE ieee_utils
     INTERFACE linalg
     INTERFACE matrix
+    INTERFACE statistics
     INTERFACE sys 
     INTERFACE vector 
 )
