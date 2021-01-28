@@ -81,9 +81,11 @@ ADD_LIBRARY( cdf STATIC ${SRC_LIST_SubSrc_cdf} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_cheb ${REPO_Src_DIR}/cheb/*.c )
 list(FILTER SRC_LIST_SubSrc_cheb EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( cheb STATIC ${SRC_LIST_SubSrc_cheb} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_combination ${REPO_Src_DIR}/combination/*.c )
 list(FILTER SRC_LIST_SubSrc_combination EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( combination STATIC ${SRC_LIST_SubSrc_combination} )
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
@@ -92,8 +94,8 @@ SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_bst}
     # ${SRC_LIST_Sublib_cblas}  // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_SubSrc_cdf}    // Use TARGET_LINK_LIBRARIES to be involved
-    ${SRC_LIST_SubSrc_cheb}
-    ${SRC_LIST_SubSrc_combination}
+    # ${SRC_LIST_SubSrc_cheb}   // Use TARGET_LINK_LIBRARIES to be involved
+    # ${SRC_LIST_SubSrc_combination} // Use TARGET_LINK_LIBRARIES to be involved
 )
 
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
@@ -101,8 +103,13 @@ ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
 TARGET_LINK_LIBRARIES( gsl
     INTERFACE cblas 
     INTERFACE cdf 
+    INTERFACE cheb 
+    INTERFACE combination 
 )
 
 # ===========================================================================
 # Test
 # ===========================================================================
+
+file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
+list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
