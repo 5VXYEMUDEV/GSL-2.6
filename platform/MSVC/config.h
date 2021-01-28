@@ -318,4 +318,18 @@
 
 #define RETURN_IF_NULL(x) if (!x) { return ; }
 
+    #ifdef WIN32
+        
+        #define inline __inline
+        #pragma warning( disable : 4267 4244 4723 )
+
+        #include <gsl/gsl_math.h>
+        __inline double log2(double x) { return log(x * M_LOG2E); }
+
+        #undef complex
+
+        #define HAVE_WINX64_IEEE_INTERFACE 1
+        
+    #endif // ! WIN32
+
 #endif
