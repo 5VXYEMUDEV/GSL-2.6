@@ -113,3 +113,11 @@ TARGET_LINK_LIBRARIES( gsl
 
 file(GLOB_RECURSE SRC_LIST_SubTestSrc_test ${REPO_Src_DIR}/test/*.c )
 ADD_LIBRARY( test STATIC ${SRC_LIST_SubTestSrc_test} )
+
+SET ( SRC_LIST_TestSuite_block
+    ${REPO_Src_DIR}/block/test.c
+)
+ADD_EXECUTABLE( test_block ${SRC_LIST_SubTestSrc_test} )
+TARGET_LINK_LIBRARIES( test_block 
+    PRIVATE gsl 
+)
