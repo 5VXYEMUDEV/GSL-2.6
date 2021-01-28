@@ -92,6 +92,15 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_err ${REPO_Src_DIR}/err/*.c )
 list(FILTER SRC_LIST_SubSrc_err EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( err STATIC ${SRC_LIST_SubSrc_err} )
 
+SET ( SRC_LIST_SubSrc_ieee_utils
+    ${REPO_Src_DIR}/ieee-utils/env.c
+    ${REPO_Src_DIR}/ieee-utils/fp.c
+    ${REPO_Src_DIR}/ieee-utils/make_rep.c
+    ${REPO_Src_DIR}/ieee-utils/print.c
+    ${REPO_Src_DIR}/ieee-utils/read.c
+)
+ADD_LIBRARY( ieee_utils STATIC ${SRC_LIST_SubSrc_ieee_utils} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_sys ${REPO_Src_DIR}/sys/*.c )
 list(FILTER SRC_LIST_SubSrc_sys EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( sys STATIC ${SRC_LIST_SubSrc_sys} )
@@ -116,6 +125,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE combination 
 
     INTERFACE err 
+    INTERFACE ieee_utils
     INTERFACE sys 
 )
 
