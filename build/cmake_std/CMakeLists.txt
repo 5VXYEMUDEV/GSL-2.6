@@ -269,3 +269,12 @@ TARGET_LINK_LIBRARIES( test_combination
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_complex
+    ${REPO_Src_DIR}/complex/test.c
+)
+ADD_EXECUTABLE( test_complex ${SRC_LIST_TestSuite_complex} )
+TARGET_LINK_LIBRARIES( test_complex 
+    PRIVATE test 
+    PRIVATE gsl 
+)
