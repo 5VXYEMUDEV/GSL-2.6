@@ -104,6 +104,7 @@ SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/read.c
 )
 ADD_LIBRARY( ieee_utils STATIC ${SRC_LIST_SubSrc_ieee_utils} )
+TARGET_LINK_LIBRARIES( ieee_utils PRIVATE err)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_linalg ${REPO_Src_DIR}/linalg/*.c )
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*test.*")
