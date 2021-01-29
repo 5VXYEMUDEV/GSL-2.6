@@ -58,6 +58,7 @@ ENDIF ()
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( blas STATIC ${SRC_LIST_SubSrc_blas} )
+TARGET_LINK_LIBRARIES( blas PRIVATE cblas)
 
 SET ( SRC_LIST_SubSrc_block
     ${REPO_Src_DIR}/block/block.c
@@ -117,6 +118,8 @@ list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*cholesky_common\.c")
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*svdstep\.c")
 ADD_LIBRARY( linalg STATIC ${SRC_LIST_SubSrc_linalg} )
 
+TARGET_LINK_LIBRARIES( linalg PRIVATE blas)
+TARGET_LINK_LIBRARIES( linalg PRIVATE matrix)
 IF (UNIX)
     TARGET_LINK_LIBRARIES( linalg PRIVATE m)
 ENDIF ()
@@ -125,6 +128,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_matrix ${REPO_Src_DIR}/matrix/*.c )
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
+TARGET_LINK_LIBRARIES( matrix PRIVATE block)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_randist ${REPO_Src_DIR}/randist/*.c )
 list(FILTER SRC_LIST_SubSrc_randist EXCLUDE REGEX ".*test.*")
@@ -216,13 +220,11 @@ TARGET_LINK_LIBRARIES( test_block
 SET ( SRC_LIST_TestSuite_bspline
     ${REPO_Src_DIR}/bspline/test.c
 )
-IF (WIN32)
-    ADD_EXECUTABLE( test_bspline ${SRC_LIST_TestSuite_bspline} )
-    TARGET_LINK_LIBRARIES( test_bspline 
-        PRIVATE test 
-        PRIVATE gsl 
-    )
-ENDIF ()
+ADD_EXECUTABLE( test_bspline ${SRC_LIST_TestSuite_bspline} )
+TARGET_LINK_LIBRARIES( test_bspline 
+    PRIVATE test 
+    PRIVATE gsl 
+)
 
 SET ( SRC_LIST_TestSuite_bst
     ${REPO_Src_DIR}/bst/test.c
