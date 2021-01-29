@@ -160,9 +160,7 @@ TARGET_LINK_LIBRARIES( gsl
 )
 
 IF (UNIX)
-    TARGET_LINK_LIBRARIES( gsl
-        PRIVATE m
-    )
+    TARGET_LINK_LIBRARIES( gsl PRIVATE m )
 ENDIF ()
 
 # ===========================================================================
