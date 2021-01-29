@@ -54,6 +54,7 @@ ENDIF ()
 IF (MSVC)
     SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4477")
     SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4018")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4334")
 
     SET(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} /IGNORE:4006  ")
 ENDIF ()
@@ -117,6 +118,20 @@ SET ( SRC_LIST_SubSrc_ieee_utils
 )
 ADD_LIBRARY( ieee_utils STATIC ${SRC_LIST_SubSrc_ieee_utils} )
 TARGET_LINK_LIBRARIES( ieee_utils PRIVATE err)
+
+file(GLOB_RECURSE SRC_LIST_SubSrc_integration ${REPO_Src_DIR}/integration/*.c )
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*append\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*initialise\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*positivity\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*ptsort\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*qc25.*\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*qelg\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*qpsrt.*\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*reset\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*set_initial\.c")
+list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*util\.c")
+ADD_LIBRARY( integration STATIC ${SRC_LIST_SubSrc_integration} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_linalg ${REPO_Src_DIR}/linalg/*.c )
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*test.*")
@@ -203,6 +218,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE complex 
     INTERFACE err 
     INTERFACE ieee_utils
+    INTERFACE integration 
     INTERFACE linalg
     INTERFACE rng 
     INTERFACE sort 
@@ -325,6 +341,24 @@ SET ( SRC_LIST_TestSuite_matrix
 )
 ADD_EXECUTABLE( test_matrix ${SRC_LIST_TestSuite_matrix} )
 TARGET_LINK_LIBRARIES( test_matrix 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_permutation
+    ${REPO_Src_DIR}/permutation/test.c
+)
+ADD_EXECUTABLE( test_permutation ${SRC_LIST_TestSuite_permutation} )
+TARGET_LINK_LIBRARIES( test_permutation 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_randist
+    ${REPO_Src_DIR}/randist/test.c
+)
+ADD_EXECUTABLE( test_randist ${SRC_LIST_TestSuite_randist} )
+TARGET_LINK_LIBRARIES( test_randist 
     PRIVATE test 
     PRIVATE gsl 
 )
