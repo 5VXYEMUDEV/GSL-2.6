@@ -735,7 +735,7 @@ gsl_sf_hermite_prob_deriv_array(const int mmax, const int n, const double x, dou
 }
 
 /* Evaluates the series sum_{j=0}^n a_j*He_j(x) with He_j being the j-th probabilists' Hermite polynomial.
- * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118â€“110.) adapted to probabilists' Hermite polynomials is used. */
+ * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118¨C110.) adapted to probabilists' Hermite polynomials is used. */
 
 int
 gsl_sf_hermite_prob_series_e(const int n, const double x, const double * a, gsl_sf_result * result)
@@ -998,7 +998,7 @@ gsl_sf_hermite_deriv_array(const int mmax, const int n, const double x, double *
 
 
 /* Evaluates the series sum_{j=0}^n a_j*H_j(x) with H_j being the j-th physicists' Hermite polynomial.
- * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118â€“110.) adapted to physicists' Hermite polynomials is used. */
+ * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118¨C110.) adapted to physicists' Hermite polynomials is used. */
 int
 gsl_sf_hermite_series_e(const int n, const double x, const double * a, gsl_sf_result * result)
 {
@@ -1112,7 +1112,7 @@ gsl_sf_hermite_func_array(const int nmax, const double x, double * result_array)
 }
 
 /* Evaluates the series sum_{j=0}^n a_j*Psi_j(x) with Psi_j being the j-th Hermite function.
- * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118â€“110.) adapted to Hermite functions is used. */
+ * For improved numerical stability the Clenshaw algorithm (Clenshaw, C. W. (July 1955). "A note on the summation of Chebyshev series". Mathematical Tables and other Aids to Computation 9 (51): 118¨C110.) adapted to Hermite functions is used. */
 
 int
 gsl_sf_hermite_func_series_e(const int n, const double x, const double * a, gsl_sf_result * result)

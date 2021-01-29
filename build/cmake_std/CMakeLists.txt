@@ -51,6 +51,13 @@ ELSEIF (UNIX)
     )
 ENDIF ()
 
+IF (MSVC)
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4477")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4018")
+
+    SET(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} /IGNORE:4006  ")
+ENDIF ()
+
 # ===========================================================================
 # Libraries Development
 # ===========================================================================
@@ -117,6 +124,7 @@ list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*apply_givens\.c")
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*cholesky_common\.c")
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*svdstep\.c")
 ADD_LIBRARY( linalg STATIC ${SRC_LIST_SubSrc_linalg} )
+TARGET_LINK_LIBRARIES( linalg PRIVATE permutation)
 
 TARGET_LINK_LIBRARIES( linalg PRIVATE blas)
 TARGET_LINK_LIBRARIES( linalg PRIVATE matrix)
@@ -129,6 +137,11 @@ list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 TARGET_LINK_LIBRARIES( matrix PRIVATE block)
+
+file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
+list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
+ADD_LIBRARY( permutation STATIC ${SRC_LIST_SubSrc_permutation} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_randist ${REPO_Src_DIR}/randist/*.c )
 list(FILTER SRC_LIST_SubSrc_randist EXCLUDE REGEX ".*test.*")
@@ -196,6 +209,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE specfunc 
     INTERFACE randist 
     INTERFACE matrix
+    INTERFACE permutation 
     INTERFACE statistics
     INTERFACE sys 
     INTERFACE vector 
@@ -293,6 +307,15 @@ SET ( SRC_LIST_TestSuite_ieee_utils
 )
 ADD_EXECUTABLE( test_ieee_utils ${SRC_LIST_TestSuite_ieee_utils} )
 TARGET_LINK_LIBRARIES( test_ieee_utils 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_linalg
+    ${REPO_Src_DIR}/linalg/test.c
+)
+ADD_EXECUTABLE( test_linalg ${SRC_LIST_TestSuite_linalg} )
+TARGET_LINK_LIBRARIES( test_linalg 
     PRIVATE test 
     PRIVATE gsl 
 )
