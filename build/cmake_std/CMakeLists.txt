@@ -57,6 +57,7 @@ ENDIF ()
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_blas ${REPO_Src_DIR}/blas/*.c )
 list(FILTER SRC_LIST_SubSrc_blas EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( blas STATIC ${SRC_LIST_SubSrc_blas} )
 
 SET ( SRC_LIST_SubSrc_block
     ${REPO_Src_DIR}/block/block.c
@@ -133,7 +134,7 @@ list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 
 SET ( SRC_LIST_LIB_GSL
-    ${SRC_LIST_SubSrc_blas}
+    # ${SRC_LIST_SubSrc_blas}   // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_SubSrc_block}  // Use TARGET_LINK_LIBRARIES to be involved
     ${SRC_LIST_SubSrc_bspline}
     ${SRC_LIST_SubSrc_bst}
@@ -146,6 +147,7 @@ SET ( SRC_LIST_LIB_GSL
 ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
 
 TARGET_LINK_LIBRARIES( gsl
+    INTERFACE blas 
     INTERFACE block 
     INTERFACE cblas 
     INTERFACE cdf 
