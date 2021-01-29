@@ -159,10 +159,6 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE vector 
 )
 
-IF (UNIX)
-    TARGET_LINK_LIBRARIES( gsl PRIVATE m )
-ENDIF ()
-
 # ===========================================================================
 # Test
 # ===========================================================================
