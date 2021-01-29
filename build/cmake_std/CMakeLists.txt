@@ -213,3 +213,10 @@ TARGET_LINK_LIBRARIES( test_bst
     PRIVATE test 
     PRIVATE gsl 
 )
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_cblas ${REPO_Src_DIR}/cblas/test*.c )
+ADD_EXECUTABLE( test_cblas ${SRC_LIST_TestSuite_cblas} )
+TARGET_LINK_LIBRARIES( test_cblas 
+    PRIVATE test 
+    PRIVATE gsl 
+)
