@@ -215,6 +215,7 @@ TARGET_LINK_LIBRARIES( test_bst
 )
 
 file(GLOB_RECURSE SRC_LIST_TestSuite_cblas ${REPO_Src_DIR}/cblas/test*.c )
+list(FILTER SRC_LIST_TestSuite_cblas EXCLUDE REGEX ".*tests\.c")
 ADD_EXECUTABLE( test_cblas ${SRC_LIST_TestSuite_cblas} )
 TARGET_LINK_LIBRARIES( test_cblas 
     PRIVATE test 
