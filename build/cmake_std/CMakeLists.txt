@@ -278,3 +278,21 @@ TARGET_LINK_LIBRARIES( test_complex
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_err
+    ${REPO_Src_DIR}/err/test.c
+)
+ADD_EXECUTABLE( test_err ${SRC_LIST_TestSuite_err} )
+TARGET_LINK_LIBRARIES( test_err 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_ieee_utils
+    ${REPO_Src_DIR}/ieee-utils/test.c
+)
+ADD_EXECUTABLE( test_ieee_utils ${SRC_LIST_TestSuite_ieee_utils} )
+TARGET_LINK_LIBRARIES( test_ieee_utils 
+    PRIVATE test 
+    PRIVATE gsl 
+)
