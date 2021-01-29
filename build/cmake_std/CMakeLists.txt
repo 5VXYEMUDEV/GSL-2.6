@@ -68,6 +68,7 @@ ADD_LIBRARY( block STATIC ${SRC_LIST_SubSrc_block} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_bspline ${REPO_Src_DIR}/bspline/*.c )
 list(FILTER SRC_LIST_SubSrc_bspline EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( bspline STATIC ${SRC_LIST_SubSrc_bspline} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_bst ${REPO_Src_DIR}/bst/*.c )
 list(FILTER SRC_LIST_SubSrc_bst EXCLUDE REGEX ".*test.*")
@@ -136,7 +137,7 @@ ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 SET ( SRC_LIST_LIB_GSL
     # ${SRC_LIST_SubSrc_blas}   // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_SubSrc_block}  // Use TARGET_LINK_LIBRARIES to be involved
-    ${SRC_LIST_SubSrc_bspline}
+    # ${SRC_LIST_SubSrc_bspline} // Use TARGET_LINK_LIBRARIES to be involved
     ${SRC_LIST_SubSrc_bst}
     # ${SRC_LIST_Sublib_cblas}  // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_SubSrc_cdf}    // Use TARGET_LINK_LIBRARIES to be involved
@@ -149,6 +150,7 @@ ADD_LIBRARY( gsl STATIC ${SRC_LIST_LIB_GSL} )
 TARGET_LINK_LIBRARIES( gsl
     INTERFACE blas 
     INTERFACE block 
+    INTERFACE bspline 
     INTERFACE cblas 
     INTERFACE cdf 
     INTERFACE cheb 
