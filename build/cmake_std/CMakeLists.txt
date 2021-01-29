@@ -108,6 +108,10 @@ list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*cholesky_common\.c")
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*svdstep\.c")
 ADD_LIBRARY( linalg STATIC ${SRC_LIST_SubSrc_linalg} )
 
+IF (UNIX)
+    TARGET_LINK_LIBRARIES( linalg PRIVATE m)
+ENDIF ()
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_matrix ${REPO_Src_DIR}/matrix/*.c )
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
@@ -154,6 +158,12 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE sys 
     INTERFACE vector 
 )
+
+IF (UNIX)
+    TARGET_LINK_LIBRARIES( gsl
+        PRIVATE m
+    )
+ENDIF ()
 
 # ===========================================================================
 # Test
