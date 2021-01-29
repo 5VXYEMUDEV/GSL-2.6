@@ -145,8 +145,8 @@ list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 
 SET ( SRC_LIST_LIB_GSL
-    # ${SRC_LIST_SubSrc_blas}   // Use TARGET_LINK_LIBRARIES to be involved
-    # ${SRC_LIST_SubSrc_block}  // Use TARGET_LINK_LIBRARIES to be involved
+    ${SRC_LIST_SubSrc_blas}
+    ${SRC_LIST_SubSrc_block}
     # ${SRC_LIST_SubSrc_bspline} // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_SubSrc_bst}    // Use TARGET_LINK_LIBRARIES to be involved
     # ${SRC_LIST_Sublib_cblas}  // Use TARGET_LINK_LIBRARIES to be involved
