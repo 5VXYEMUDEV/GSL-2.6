@@ -251,3 +251,12 @@ TARGET_LINK_LIBRARIES( test_cdf
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_cheb
+    ${REPO_Src_DIR}/cheb/test.c
+)
+ADD_EXECUTABLE( test_cheb ${SRC_LIST_TestSuite_cheb} )
+TARGET_LINK_LIBRARIES( test_cheb 
+    PRIVATE test 
+    PRIVATE gsl 
+)
