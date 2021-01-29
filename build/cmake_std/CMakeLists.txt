@@ -222,3 +222,12 @@ TARGET_LINK_LIBRARIES( test_cblas
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_cdf
+    ${REPO_Src_DIR}/cdf/test.c
+)
+ADD_EXECUTABLE( test_cdf ${SRC_LIST_TestSuite_cdf} )
+TARGET_LINK_LIBRARIES( test_cdf 
+    PRIVATE test 
+    PRIVATE gsl 
+)
