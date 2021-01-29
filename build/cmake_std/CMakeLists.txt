@@ -191,3 +191,12 @@ IF (WIN32)
         PRIVATE gsl 
     )
 ENDIF ()
+
+SET ( SRC_LIST_TestSuite_bst
+    ${REPO_Src_DIR}/bst/test.c
+)
+ADD_EXECUTABLE( test_bst ${SRC_LIST_TestSuite_bst} )
+TARGET_LINK_LIBRARIES( test_bst 
+    PRIVATE test 
+    PRIVATE gsl 
+)
