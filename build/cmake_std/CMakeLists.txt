@@ -91,6 +91,10 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_combination ${REPO_Src_DIR}/combination/*.c )
 list(FILTER SRC_LIST_SubSrc_combination EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( combination STATIC ${SRC_LIST_SubSrc_combination} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_complex ${REPO_Src_DIR}/complex/*.c )
+list(FILTER SRC_LIST_SubSrc_complex EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( complex STATIC ${SRC_LIST_SubSrc_complex} )
+
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_err ${REPO_Src_DIR}/err/*.c )
 list(FILTER SRC_LIST_SubSrc_err EXCLUDE REGEX ".*test.*")
@@ -137,6 +141,8 @@ ADD_LIBRARY( sort STATIC ${SRC_LIST_SubSrc_sort} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_specfunc ${REPO_Src_DIR}/specfunc/*.c )
 list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_eval.*\.c")
+list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( specfunc STATIC ${SRC_LIST_SubSrc_specfunc} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
@@ -175,7 +181,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE cdf 
     INTERFACE cheb 
     INTERFACE combination 
-
+    INTERFACE complex 
     INTERFACE err 
     INTERFACE ieee_utils
     INTERFACE linalg
