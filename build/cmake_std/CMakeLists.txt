@@ -260,3 +260,12 @@ TARGET_LINK_LIBRARIES( test_cheb
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_combination
+    ${REPO_Src_DIR}/combination/test.c
+)
+ADD_EXECUTABLE( test_combination ${SRC_LIST_TestSuite_combination} )
+TARGET_LINK_LIBRARIES( test_combination 
+    PRIVATE test 
+    PRIVATE gsl 
+)
