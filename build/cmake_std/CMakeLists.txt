@@ -122,6 +122,10 @@ list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_randist ${REPO_Src_DIR}/randist/*.c )
+list(FILTER SRC_LIST_SubSrc_randist EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( randist STATIC ${SRC_LIST_SubSrc_randist} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_rng ${REPO_Src_DIR}/rng/*.c )
 list(FILTER SRC_LIST_SubSrc_rng EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( rng STATIC ${SRC_LIST_SubSrc_rng} )
@@ -173,6 +177,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE linalg
     INTERFACE rng 
     INTERFACE sort 
+    INTERFACE randist 
     INTERFACE matrix
     INTERFACE statistics
     INTERFACE sys 
