@@ -184,8 +184,10 @@ TARGET_LINK_LIBRARIES( test_block
 SET ( SRC_LIST_TestSuite_bspline
     ${REPO_Src_DIR}/bspline/test.c
 )
-ADD_EXECUTABLE( test_bspline ${SRC_LIST_TestSuite_bspline} )
-TARGET_LINK_LIBRARIES( test_bspline 
-    PRIVATE test 
-    PRIVATE gsl 
-)
+IF (WIN32)
+    ADD_EXECUTABLE( test_bspline ${SRC_LIST_TestSuite_bspline} )
+    TARGET_LINK_LIBRARIES( test_bspline 
+        PRIVATE test 
+        PRIVATE gsl 
+    )
+ENDIF ()
