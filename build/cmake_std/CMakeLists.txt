@@ -319,3 +319,12 @@ TARGET_LINK_LIBRARIES( test_linalg
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_matrix
+    ${REPO_Src_DIR}/matrix/test.c
+)
+ADD_EXECUTABLE( test_matrix ${SRC_LIST_TestSuite_matrix} )
+TARGET_LINK_LIBRARIES( test_matrix 
+    PRIVATE test 
+    PRIVATE gsl 
+)
