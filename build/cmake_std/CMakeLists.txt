@@ -424,3 +424,10 @@ TARGET_LINK_LIBRARIES( test_statistics
     PRIVATE test 
     PRIVATE gsl 
 )
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_sum ${REPO_Src_DIR}/sum/test*.c )
+ADD_EXECUTABLE( test_sum ${SRC_LIST_TestSuite_sum} )
+TARGET_LINK_LIBRARIES( test_sum 
+    PRIVATE test 
+    PRIVATE gsl 
+)
