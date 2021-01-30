@@ -195,6 +195,7 @@ list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*deque\.c")
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*ringbuf\.c")
 ADD_LIBRARY( movstat STATIC ${SRC_LIST_SubSrc_movstat} )
+TARGET_LINK_LIBRARIES( movstat PRIVATE err)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
