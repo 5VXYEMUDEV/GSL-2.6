@@ -204,6 +204,10 @@ ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 TARGET_LINK_LIBRARIES( matrix PRIVATE blas)
 TARGET_LINK_LIBRARIES( matrix PRIVATE block)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_min ${REPO_Src_DIR}/min/*.c )
+list(FILTER SRC_LIST_SubSrc_min EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( min STATIC ${SRC_LIST_SubSrc_min} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_movstat ${REPO_Src_DIR}/movstat/*.c )
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*deque\.c")
@@ -305,6 +309,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE interpolation 
     INTERFACE linalg
     INTERFACE matrix
+    INTERFACE min 
     INTERFACE movstat 
     INTERFACE permutation 
     INTERFACE poly 
