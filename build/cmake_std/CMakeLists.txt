@@ -418,6 +418,16 @@ TARGET_LINK_LIBRARIES( test_err
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_fft
+    ${REPO_Src_DIR}/fft/signals.c
+    ${REPO_Src_DIR}/fft/test.c
+)
+ADD_EXECUTABLE( test_fft ${SRC_LIST_TestSuite_fft} )
+TARGET_LINK_LIBRARIES( test_fft 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/test.c
 )
