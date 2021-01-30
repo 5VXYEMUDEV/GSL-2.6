@@ -146,6 +146,10 @@ list(FILTER SRC_LIST_SubSrc_filter EXCLUDE REGEX ".*ringbuf\.c")
 ADD_LIBRARY( filter STATIC ${SRC_LIST_SubSrc_filter} )
 TARGET_LINK_LIBRARIES( filter PRIVATE movstat)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_fit ${REPO_Src_DIR}/fit/*.c )
+list(FILTER SRC_LIST_SubSrc_fit EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( fit STATIC ${SRC_LIST_SubSrc_fit} )
+
 SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/env.c
     ${REPO_Src_DIR}/ieee-utils/fp.c
@@ -284,6 +288,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE err 
     INTERFACE fft
     INTERFACE filter 
+    INTERFACE fit 
     INTERFACE ieee_utils
     INTERFACE integration 
     INTERFACE linalg
