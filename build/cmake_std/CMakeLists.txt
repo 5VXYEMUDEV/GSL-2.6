@@ -112,6 +112,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_eigen ${REPO_Src_DIR}/eigen/*.c )
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*step\.c")
 ADD_LIBRARY( eigen STATIC ${SRC_LIST_SubSrc_eigen} )
+TARGET_LINK_LIBRARIES( eigen PRIVATE linalg)
 
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_err ${REPO_Src_DIR}/err/*.c )

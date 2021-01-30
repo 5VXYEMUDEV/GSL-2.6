@@ -1,0 +1,10 @@
+^D:\DEVSPACE\YAPINGXIN-AEROSPACE\LIBDEV-21JAN\GNU_SCIENTIFIC_LIBRARY\5VXYEMUDEV\GSL-BUILD\BUILD\CMAKE_STD\CMAKELISTS.TXT
+setlocal
+D:\App\Dev\CMake\bin\cmake.exe -SD:/DevSpace/YapingXin-Aerospace/LibDev-21JAN/GNU_Scientific_Library/5VXYEMUDEV/GSL-Build/build/cmake_std -BD:/DevSpace/YapingXin-Aerospace/LibDev-21JAN/GNU_Scientific_Library/5VXYEMUDEV/GSL-Build/build/cmake_std --check-stamp-file D:/DevSpace/YapingXin-Aerospace/LibDev-21JAN/GNU_Scientific_Library/5VXYEMUDEV/GSL-Build/build/cmake_std/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
