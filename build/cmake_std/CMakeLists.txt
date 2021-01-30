@@ -118,6 +118,11 @@ SET ( SRC_LIST_SubSrc_dht
 )
 ADD_LIBRARY( dht STATIC ${SRC_LIST_SubSrc_dht} )
 
+SET ( SRC_LIST_SubSrc_diff
+    ${REPO_Src_DIR}/diff/diff.c
+)
+ADD_LIBRARY( diff STATIC ${SRC_LIST_SubSrc_diff} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_eigen ${REPO_Src_DIR}/eigen/*.c )
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*step\.c")
@@ -255,6 +260,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE complex 
     INTERFACE deriv 
     INTERFACE dht
+    INTERFACE diff 
     INTERFACE eigen 
     INTERFACE err 
     INTERFACE ieee_utils
