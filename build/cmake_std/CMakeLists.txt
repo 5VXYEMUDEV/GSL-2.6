@@ -218,6 +218,7 @@ list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_vector EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 TARGET_LINK_LIBRARIES( vector PRIVATE blas)
+TARGET_LINK_LIBRARIES( vector PRIVATE block)
 
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
