@@ -205,6 +205,10 @@ list(APPEND SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/ttest.c )
 ADD_LIBRARY( statistics STATIC ${SRC_LIST_SubSrc_statistics} )
 TARGET_LINK_LIBRARIES( statistics PRIVATE sort)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_sum ${REPO_Src_DIR}/sum/*.c )
+list(FILTER SRC_LIST_SubSrc_sum EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( sum STATIC ${SRC_LIST_SubSrc_sum} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_sys ${REPO_Src_DIR}/sys/*.c )
 list(FILTER SRC_LIST_SubSrc_sys EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( sys STATIC ${SRC_LIST_SubSrc_sys} )
@@ -251,6 +255,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE statistics
+    INTERFACE sum 
     INTERFACE sys 
     INTERFACE vector 
 )
