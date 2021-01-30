@@ -384,6 +384,15 @@ TARGET_LINK_LIBRARIES( test_permutation
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_poly
+    ${REPO_Src_DIR}/poly/test.c
+)
+ADD_EXECUTABLE( test_poly ${SRC_LIST_TestSuite_poly} )
+TARGET_LINK_LIBRARIES( test_poly 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_randist
     ${REPO_Src_DIR}/randist/test.c
 )
