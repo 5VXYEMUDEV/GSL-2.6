@@ -357,6 +357,13 @@ TARGET_LINK_LIBRARIES( test_ieee_utils
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_integration ${REPO_Src_DIR}/integration/test*.c )
+ADD_EXECUTABLE( test_integration ${SRC_LIST_TestSuite_integration} )
+TARGET_LINK_LIBRARIES( test_integration 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_linalg
     ${REPO_Src_DIR}/linalg/test.c
 )
