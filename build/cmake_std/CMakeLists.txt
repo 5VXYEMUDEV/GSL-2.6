@@ -438,3 +438,12 @@ TARGET_LINK_LIBRARIES( test_sys
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_vector
+    ${REPO_Src_DIR}/vector/test.c
+)
+ADD_EXECUTABLE( test_vector ${SRC_LIST_TestSuite_vector} )
+TARGET_LINK_LIBRARIES( test_vector 
+    PRIVATE test 
+    PRIVATE gsl 
+)
