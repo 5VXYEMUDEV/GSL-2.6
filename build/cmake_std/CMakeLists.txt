@@ -134,6 +134,12 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_err ${REPO_Src_DIR}/err/*.c )
 list(FILTER SRC_LIST_SubSrc_err EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( err STATIC ${SRC_LIST_SubSrc_err} )
 
+SET ( SRC_LIST_SubSrc_fft
+    ${REPO_Src_DIR}/fft/fft.c
+    ${REPO_Src_DIR}/fft/dft.c
+)
+ADD_LIBRARY( fft STATIC ${SRC_LIST_SubSrc_fft} )
+
 SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/env.c
     ${REPO_Src_DIR}/ieee-utils/fp.c
@@ -263,6 +269,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE diff 
     INTERFACE eigen 
     INTERFACE err 
+    INTERFACE fft
     INTERFACE ieee_utils
     INTERFACE integration 
     INTERFACE linalg
