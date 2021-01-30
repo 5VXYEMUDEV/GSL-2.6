@@ -254,13 +254,13 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE ieee_utils
     INTERFACE integration 
     INTERFACE linalg
-    INTERFACE rng 
-    INTERFACE sort 
-    INTERFACE specfunc 
-    INTERFACE randist 
     INTERFACE matrix
     INTERFACE permutation 
     INTERFACE poly 
+    INTERFACE randist 
+    INTERFACE rng 
+    INTERFACE sort 
+    INTERFACE specfunc 
     INTERFACE statistics
     INTERFACE sum 
     INTERFACE sys 
