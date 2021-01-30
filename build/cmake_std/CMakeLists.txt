@@ -485,6 +485,15 @@ TARGET_LINK_LIBRARIES( test_matrix
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_movstat
+    ${REPO_Src_DIR}/movstat/test.c
+)
+ADD_EXECUTABLE( test_movstat ${SRC_LIST_TestSuite_movstat} )
+TARGET_LINK_LIBRARIES( test_movstat 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )
