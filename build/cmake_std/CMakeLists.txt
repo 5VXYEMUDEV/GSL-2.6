@@ -180,6 +180,10 @@ list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*set_initial\.c")
 list(FILTER SRC_LIST_SubSrc_integration EXCLUDE REGEX ".*util\.c")
 ADD_LIBRARY( integration STATIC ${SRC_LIST_SubSrc_integration} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_interpolation ${REPO_Src_DIR}/interpolation/*.c )
+list(FILTER SRC_LIST_SubSrc_interpolation EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( interpolation STATIC ${SRC_LIST_SubSrc_interpolation} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_linalg ${REPO_Src_DIR}/linalg/*.c )
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_linalg EXCLUDE REGEX ".*apply_givens\.c")
@@ -298,6 +302,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE histogram 
     INTERFACE ieee_utils
     INTERFACE integration 
+    INTERFACE interpolation 
     INTERFACE linalg
     INTERFACE matrix
     INTERFACE movstat 
@@ -490,6 +495,15 @@ TARGET_LINK_LIBRARIES( test_ieee_utils
 file(GLOB_RECURSE SRC_LIST_TestSuite_integration ${REPO_Src_DIR}/integration/test*.c )
 ADD_EXECUTABLE( test_integration ${SRC_LIST_TestSuite_integration} )
 TARGET_LINK_LIBRARIES( test_integration 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_interpolation
+    ${REPO_Src_DIR}/interpolation/test.c
+)
+ADD_EXECUTABLE( test_interpolation ${SRC_LIST_TestSuite_interpolation} )
+TARGET_LINK_LIBRARIES( test_interpolation 
     PRIVATE test 
     PRIVATE gsl 
 )
