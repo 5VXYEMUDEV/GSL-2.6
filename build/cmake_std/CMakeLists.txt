@@ -376,3 +376,12 @@ TARGET_LINK_LIBRARIES( test_rng
     PRIVATE test 
     PRIVATE gsl 
 )
+
+SET ( SRC_LIST_TestSuite_sort
+    ${REPO_Src_DIR}/sort/test.c
+)
+ADD_EXECUTABLE( test_sort ${SRC_LIST_TestSuite_sort} )
+TARGET_LINK_LIBRARIES( test_sort 
+    PRIVATE test 
+    PRIVATE gsl 
+)
