@@ -150,6 +150,12 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_fit ${REPO_Src_DIR}/fit/*.c )
 list(FILTER SRC_LIST_SubSrc_fit EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( fit STATIC ${SRC_LIST_SubSrc_fit} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_histogram ${REPO_Src_DIR}/histogram/*.c )
+list(FILTER SRC_LIST_SubSrc_histogram EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_histogram EXCLUDE REGEX ".*find.*\.c")
+list(FILTER SRC_LIST_SubSrc_histogram EXCLUDE REGEX ".*urand\.c")
+ADD_LIBRARY( histogram STATIC ${SRC_LIST_SubSrc_histogram} )
+
 SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/env.c
     ${REPO_Src_DIR}/ieee-utils/fp.c
@@ -286,9 +292,10 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE diff 
     INTERFACE eigen 
     INTERFACE err 
-    INTERFACE fft
+    INTERFACE fft 
     INTERFACE filter 
     INTERFACE fit 
+    INTERFACE histogram 
     INTERFACE ieee_utils
     INTERFACE integration 
     INTERFACE linalg
@@ -460,6 +467,13 @@ TARGET_LINK_LIBRARIES( test_filter
 file(GLOB_RECURSE SRC_LIST_TestSuite_fit ${REPO_Src_DIR}/fit/test*.c )
 ADD_EXECUTABLE( test_fit ${SRC_LIST_TestSuite_fit} )
 TARGET_LINK_LIBRARIES( test_fit 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_histogram ${REPO_Src_DIR}/histogram/test*.c )
+ADD_EXECUTABLE( test_histogram ${SRC_LIST_TestSuite_histogram} )
+TARGET_LINK_LIBRARIES( test_histogram 
     PRIVATE test 
     PRIVATE gsl 
 )
