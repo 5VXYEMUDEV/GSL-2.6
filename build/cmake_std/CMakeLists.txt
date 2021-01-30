@@ -144,6 +144,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_filter ${REPO_Src_DIR}/filter/*.c )
 list(FILTER SRC_LIST_SubSrc_filter EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_filter EXCLUDE REGEX ".*ringbuf\.c")
 ADD_LIBRARY( filter STATIC ${SRC_LIST_SubSrc_filter} )
+TARGET_LINK_LIBRARIES( filter PRIVATE movstat)
 
 SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/env.c
@@ -188,6 +189,12 @@ list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 TARGET_LINK_LIBRARIES( matrix PRIVATE blas)
 TARGET_LINK_LIBRARIES( matrix PRIVATE block)
+
+file(GLOB_RECURSE SRC_LIST_SubSrc_movstat ${REPO_Src_DIR}/movstat/*.c )
+list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*deque\.c")
+list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*ringbuf\.c")
+ADD_LIBRARY( movstat STATIC ${SRC_LIST_SubSrc_movstat} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
@@ -280,6 +287,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE integration 
     INTERFACE linalg
     INTERFACE matrix
+    INTERFACE movstat 
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
@@ -430,6 +438,15 @@ SET ( SRC_LIST_TestSuite_fft
 )
 ADD_EXECUTABLE( test_fft ${SRC_LIST_TestSuite_fft} )
 TARGET_LINK_LIBRARIES( test_fft 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_filter
+    ${REPO_Src_DIR}/filter/test.c
+)
+ADD_EXECUTABLE( test_filter ${SRC_LIST_TestSuite_filter} )
+TARGET_LINK_LIBRARIES( test_filter 
     PRIVATE test 
     PRIVATE gsl 
 )
