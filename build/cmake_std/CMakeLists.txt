@@ -339,6 +339,15 @@ TARGET_LINK_LIBRARIES( test_complex
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_eigen
+    ${REPO_Src_DIR}/eigen/test.c
+)
+ADD_EXECUTABLE( test_eigen ${SRC_LIST_TestSuite_eigen} )
+TARGET_LINK_LIBRARIES( test_eigen 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_err
     ${REPO_Src_DIR}/err/test.c
 )
