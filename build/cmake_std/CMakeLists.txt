@@ -384,6 +384,15 @@ TARGET_LINK_LIBRARIES( test_dht
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_diff
+    ${REPO_Src_DIR}/diff/test.c
+)
+ADD_EXECUTABLE( test_diff ${SRC_LIST_TestSuite_diff} )
+TARGET_LINK_LIBRARIES( test_diff 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_eigen
     ${REPO_Src_DIR}/eigen/test.c
 )
