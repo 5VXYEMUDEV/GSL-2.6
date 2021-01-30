@@ -113,6 +113,11 @@ SET ( SRC_LIST_SubSrc_deriv
 )
 ADD_LIBRARY( deriv STATIC ${SRC_LIST_SubSrc_deriv} )
 
+SET ( SRC_LIST_SubSrc_dht
+    ${REPO_Src_DIR}/dht/dht.c
+)
+ADD_LIBRARY( dht STATIC ${SRC_LIST_SubSrc_dht} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_eigen ${REPO_Src_DIR}/eigen/*.c )
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*step\.c")
@@ -249,6 +254,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE combination 
     INTERFACE complex 
     INTERFACE deriv 
+    INTERFACE dht
     INTERFACE eigen 
     INTERFACE err 
     INTERFACE ieee_utils
@@ -359,6 +365,15 @@ SET ( SRC_LIST_TestSuite_deriv
 )
 ADD_EXECUTABLE( test_deriv ${SRC_LIST_TestSuite_deriv} )
 TARGET_LINK_LIBRARIES( test_deriv 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_dht
+    ${REPO_Src_DIR}/dht/test.c
+)
+ADD_EXECUTABLE( test_dht ${SRC_LIST_TestSuite_dht} )
+TARGET_LINK_LIBRARIES( test_dht 
     PRIVATE test 
     PRIVATE gsl 
 )
