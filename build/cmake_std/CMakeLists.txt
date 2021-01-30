@@ -431,3 +431,10 @@ TARGET_LINK_LIBRARIES( test_sum
     PRIVATE test 
     PRIVATE gsl 
 )
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_sys ${REPO_Src_DIR}/sys/test*.c )
+ADD_EXECUTABLE( test_sys ${SRC_LIST_TestSuite_sys} )
+TARGET_LINK_LIBRARIES( test_sys 
+    PRIVATE test 
+    PRIVATE gsl 
+)
