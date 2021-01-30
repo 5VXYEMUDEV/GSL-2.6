@@ -108,6 +108,11 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_complex ${REPO_Src_DIR}/complex/*.c )
 list(FILTER SRC_LIST_SubSrc_complex EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( complex STATIC ${SRC_LIST_SubSrc_complex} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_eigen ${REPO_Src_DIR}/eigen/*.c )
+list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*step\.c")
+ADD_LIBRARY( eigen STATIC ${SRC_LIST_SubSrc_eigen} )
+
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_err ${REPO_Src_DIR}/err/*.c )
 list(FILTER SRC_LIST_SubSrc_err EXCLUDE REGEX ".*test.*")
@@ -182,6 +187,7 @@ list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_eval.*\.c")
 list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( specfunc STATIC ${SRC_LIST_SubSrc_specfunc} )
 TARGET_LINK_LIBRARIES( specfunc PRIVATE complex)
+TARGET_LINK_LIBRARIES( specfunc PRIVATE eigen)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
 list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*test.*")
@@ -222,6 +228,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE cheb 
     INTERFACE combination 
     INTERFACE complex 
+    INTERFACE eigen 
     INTERFACE err 
     INTERFACE ieee_utils
     INTERFACE integration 
@@ -383,6 +390,13 @@ SET ( SRC_LIST_TestSuite_sort
 )
 ADD_EXECUTABLE( test_sort ${SRC_LIST_TestSuite_sort} )
 TARGET_LINK_LIBRARIES( test_sort 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/specfunc/test*.c )
+ADD_EXECUTABLE( test_specfunc ${SRC_LIST_TestSuite_specfunc} )
+TARGET_LINK_LIBRARIES( test_specfunc 
     PRIVATE test 
     PRIVATE gsl 
 )
