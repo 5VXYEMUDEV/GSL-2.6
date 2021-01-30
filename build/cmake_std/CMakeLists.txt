@@ -167,6 +167,13 @@ list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( permutation STATIC ${SRC_LIST_SubSrc_permutation} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_poly ${REPO_Src_DIR}/poly/*.c )
+list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*balance\.c")
+list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*companion\.c")
+list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*qr\.c")
+ADD_LIBRARY( poly STATIC ${SRC_LIST_SubSrc_poly} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_randist ${REPO_Src_DIR}/randist/*.c )
 list(FILTER SRC_LIST_SubSrc_randist EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( randist STATIC ${SRC_LIST_SubSrc_randist} )
@@ -188,6 +195,7 @@ list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( specfunc STATIC ${SRC_LIST_SubSrc_specfunc} )
 TARGET_LINK_LIBRARIES( specfunc PRIVATE complex)
 TARGET_LINK_LIBRARIES( specfunc PRIVATE eigen)
+TARGET_LINK_LIBRARIES( specfunc PRIVATE poly)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
 list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*test.*")
@@ -239,6 +247,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE randist 
     INTERFACE matrix
     INTERFACE permutation 
+    INTERFACE poly 
     INTERFACE statistics
     INTERFACE sys 
     INTERFACE vector 
