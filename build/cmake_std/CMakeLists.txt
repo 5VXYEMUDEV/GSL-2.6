@@ -411,3 +411,11 @@ TARGET_LINK_LIBRARIES( test_specfunc
     PRIVATE test 
     PRIVATE gsl 
 )
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_statistics ${REPO_Src_DIR}/statistics/test*.c )
+list(FILTER SRC_LIST_TestSuite_statistics EXCLUDE REGEX ".*_source\.c")
+ADD_EXECUTABLE( test_statistics ${SRC_LIST_TestSuite_statistics} )
+TARGET_LINK_LIBRARIES( test_statistics 
+    PRIVATE test 
+    PRIVATE gsl 
+)
