@@ -457,6 +457,13 @@ TARGET_LINK_LIBRARIES( test_filter
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_fit ${REPO_Src_DIR}/fit/test*.c )
+ADD_EXECUTABLE( test_fit ${SRC_LIST_TestSuite_fit} )
+TARGET_LINK_LIBRARIES( test_fit 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/test.c
 )
