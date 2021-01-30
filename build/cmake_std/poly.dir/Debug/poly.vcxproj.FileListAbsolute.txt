@@ -1,2 +1,0 @@
-D:\DevSpace\YapingXin-Aerospace\LibDev-21JAN\GNU_Scientific_Library\5VXYEMUDEV\GSL-Build\build\lib\x64\Debug\poly.pdb
-D:\DevSpace\YapingXin-Aerospace\LibDev-21JAN\GNU_Scientific_Library\5VXYEMUDEV\GSL-Build\build\cmake_std\poly.dir\Debug\poly.pdb
