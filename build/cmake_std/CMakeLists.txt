@@ -140,6 +140,11 @@ SET ( SRC_LIST_SubSrc_fft
 )
 ADD_LIBRARY( fft STATIC ${SRC_LIST_SubSrc_fft} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_filter ${REPO_Src_DIR}/filter/*.c )
+list(FILTER SRC_LIST_SubSrc_filter EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_filter EXCLUDE REGEX ".*ringbuf\.c")
+ADD_LIBRARY( filter STATIC ${SRC_LIST_SubSrc_filter} )
+
 SET ( SRC_LIST_SubSrc_ieee_utils
     ${REPO_Src_DIR}/ieee-utils/env.c
     ${REPO_Src_DIR}/ieee-utils/fp.c
@@ -270,6 +275,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE eigen 
     INTERFACE err 
     INTERFACE fft
+    INTERFACE filter 
     INTERFACE ieee_utils
     INTERFACE integration 
     INTERFACE linalg
