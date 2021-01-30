@@ -108,6 +108,11 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_complex ${REPO_Src_DIR}/complex/*.c )
 list(FILTER SRC_LIST_SubSrc_complex EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( complex STATIC ${SRC_LIST_SubSrc_complex} )
 
+SET ( SRC_LIST_SubSrc_deriv
+    ${REPO_Src_DIR}/deriv/deriv.c
+)
+ADD_LIBRARY( deriv STATIC ${SRC_LIST_SubSrc_deriv} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_eigen ${REPO_Src_DIR}/eigen/*.c )
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_eigen EXCLUDE REGEX ".*step\.c")
@@ -243,6 +248,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE cheb 
     INTERFACE combination 
     INTERFACE complex 
+    INTERFACE deriv 
     INTERFACE eigen 
     INTERFACE err 
     INTERFACE ieee_utils
