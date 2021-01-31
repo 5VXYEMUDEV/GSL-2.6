@@ -650,6 +650,13 @@ TARGET_LINK_LIBRARIES( test_multimin
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_multiroots ${REPO_Src_DIR}/multiroots/test*.c )
+ADD_EXECUTABLE( test_multiroots ${SRC_LIST_TestSuite_multiroots} )
+TARGET_LINK_LIBRARIES( test_multiroots 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )
