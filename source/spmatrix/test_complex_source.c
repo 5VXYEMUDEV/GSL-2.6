@@ -36,6 +36,7 @@ Return: pointer to sparse matrix in triplet format (must be freed by caller)
 Notes:
 1) non-zero matrix entries are uniformly distributed in [0,1]
 */
+#include <unistd.h>
 
 static TYPE (gsl_spmatrix) *
 FUNCTION (test, random)(const size_t M, const size_t N, const double density,
