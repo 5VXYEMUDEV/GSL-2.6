@@ -228,6 +228,7 @@ list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*lmset\.c")
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*lmutil\.c")
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*qrsolv\.c")
 ADD_LIBRARY( multifit STATIC ${SRC_LIST_SubSrc_multifit} )
+TARGET_LINK_LIBRARIES( multifit PRIVATE min)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
