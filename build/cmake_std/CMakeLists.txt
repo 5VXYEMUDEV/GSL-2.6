@@ -573,6 +573,15 @@ TARGET_LINK_LIBRARIES( test_movstat
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_multifit
+    ${REPO_Src_DIR}/multifit/test.c
+)
+ADD_EXECUTABLE( test_multifit ${SRC_LIST_TestSuite_multifit} )
+TARGET_LINK_LIBRARIES( test_multifit 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )

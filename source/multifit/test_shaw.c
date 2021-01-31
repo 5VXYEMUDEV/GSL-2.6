@@ -23,7 +23,7 @@ shaw_gcv_G(const double lambda, const gsl_matrix * X, const gsl_vector * y,
   gsl_vector * c = gsl_vector_alloc(p);
   gsl_vector_view d;
   double rnorm, snorm;
-  double term1, term2, G;
+  double term1, term2;
   size_t i;
 
   /* compute regularized solution with this lambda */
@@ -241,7 +241,7 @@ test_shaw_system_gcv(gsl_rng *rng_p, const size_t n, const size_t p,
   gsl_multifit_linear_workspace * work = 
     gsl_multifit_linear_alloc (n, p);
 
-  size_t reg_idx, i;
+  size_t i;
   double lambda, rnorm, snorm, G_lambda;
 
   /* build design matrix */
