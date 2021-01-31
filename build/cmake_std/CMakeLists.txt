@@ -223,6 +223,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_multifit ${REPO_Src_DIR}/multifit/*.c )
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*lmiterate\.c")
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*lmmisc\.c")
+list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*lmpar\.c")
 ADD_LIBRARY( multifit STATIC ${SRC_LIST_SubSrc_multifit} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
