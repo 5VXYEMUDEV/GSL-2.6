@@ -230,6 +230,10 @@ list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*qrsolv\.c")
 ADD_LIBRARY( multifit STATIC ${SRC_LIST_SubSrc_multifit} )
 TARGET_LINK_LIBRARIES( multifit PRIVATE min)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multifit_nlinear ${REPO_Src_DIR}/multifit_nlinear/*.c )
+list(FILTER SRC_LIST_SubSrc_multifit_nlinear EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( multifit_nlinear STATIC ${SRC_LIST_SubSrc_multifit_nlinear} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -328,6 +332,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE monte 
     INTERFACE movstat 
     INTERFACE multifit 
+    INTERFACE multifit_nlinear 
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
