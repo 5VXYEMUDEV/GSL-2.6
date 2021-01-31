@@ -262,6 +262,10 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_multiset ${REPO_Src_DIR}/multiset/*.c )
 list(FILTER SRC_LIST_SubSrc_multiset EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( multiset STATIC ${SRC_LIST_SubSrc_multiset} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_ntuple ${REPO_Src_DIR}/ntuple/*.c )
+list(FILTER SRC_LIST_SubSrc_ntuple EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( ntuple STATIC ${SRC_LIST_SubSrc_ntuple} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -366,6 +370,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multimin 
     INTERFACE multiroots
     INTERFACE multiset
+    INTERFACE ntuple
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
@@ -667,6 +672,15 @@ SET ( SRC_LIST_TestSuite_multiset
 )
 ADD_EXECUTABLE( test_multiset ${SRC_LIST_TestSuite_multiset} )
 TARGET_LINK_LIBRARIES( test_multiset 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_ntuple
+    ${REPO_Src_DIR}/ntuple/test.c
+)
+ADD_EXECUTABLE( test_ntuple ${SRC_LIST_TestSuite_ntuple} )
+TARGET_LINK_LIBRARIES( test_ntuple 
     PRIVATE test 
     PRIVATE gsl 
 )
