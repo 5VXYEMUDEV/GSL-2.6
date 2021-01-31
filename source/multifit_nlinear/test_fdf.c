@@ -257,8 +257,8 @@ test_fdf(const gsl_multifit_nlinear_type * T,
   gsl_multifit_nlinear_workspace *w =
     gsl_multifit_nlinear_alloc (T, params, n, p);
   const char *pname = problem->name;
-  char buf[2048];
-  char sname[2048];
+  char buf[2048 + 64] = {0};
+  char sname[2048 + 64] = {0};
   int status, info;
 
   sprintf(buf, "%s/%s/scale=%s/solver=%s",
