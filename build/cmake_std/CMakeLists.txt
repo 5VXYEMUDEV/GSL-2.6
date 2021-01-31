@@ -636,6 +636,13 @@ TARGET_LINK_LIBRARIES( test_multilarge_nlinear
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_multimin ${REPO_Src_DIR}/multimin/test*.c )
+ADD_EXECUTABLE( test_multimin ${SRC_LIST_TestSuite_multimin} )
+TARGET_LINK_LIBRARIES( test_multimin 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )
