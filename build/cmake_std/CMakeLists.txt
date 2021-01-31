@@ -290,6 +290,10 @@ list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*companion\.c")
 list(FILTER SRC_LIST_SubSrc_poly EXCLUDE REGEX ".*qr\.c")
 ADD_LIBRARY( poly STATIC ${SRC_LIST_SubSrc_poly} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_qrng ${REPO_Src_DIR}/qrng/*.c )
+list(FILTER SRC_LIST_SubSrc_qrng EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( qrng STATIC ${SRC_LIST_SubSrc_qrng} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_randist ${REPO_Src_DIR}/randist/*.c )
 list(FILTER SRC_LIST_SubSrc_randist EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( randist STATIC ${SRC_LIST_SubSrc_randist} )
@@ -387,6 +391,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE ode_initval2
     INTERFACE permutation 
     INTERFACE poly 
+    INTERFACE qrng
     INTERFACE randist 
     INTERFACE rng 
     INTERFACE sort 
@@ -731,6 +736,15 @@ SET ( SRC_LIST_TestSuite_poly
 )
 ADD_EXECUTABLE( test_poly ${SRC_LIST_TestSuite_poly} )
 TARGET_LINK_LIBRARIES( test_poly 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_qrng
+    ${REPO_Src_DIR}/qrng/test.c
+)
+ADD_EXECUTABLE( test_qrng ${SRC_LIST_TestSuite_qrng} )
+TARGET_LINK_LIBRARIES( test_qrng 
     PRIVATE test 
     PRIVATE gsl 
 )
