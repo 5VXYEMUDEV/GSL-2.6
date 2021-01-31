@@ -342,6 +342,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_spmatrix ${REPO_Src_DIR}/spmatrix/*.c )
 list(FILTER SRC_LIST_SubSrc_spmatrix EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_spmatrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( spmatrix STATIC ${SRC_LIST_SubSrc_spmatrix} )
+TARGET_LINK_LIBRARIES( spmatrix PRIVATE bst)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
 list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*test.*")
