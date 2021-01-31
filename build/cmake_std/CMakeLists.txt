@@ -246,6 +246,12 @@ list(FILTER SRC_LIST_SubSrc_multilarge_nlinear EXCLUDE REGEX ".*common\.c")
 ADD_LIBRARY( multilarge_nlinear STATIC ${SRC_LIST_SubSrc_multilarge_nlinear} )
 TARGET_LINK_LIBRARIES( multilarge_nlinear PRIVATE multifit)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multimin ${REPO_Src_DIR}/multimin/*.c )
+list(FILTER SRC_LIST_SubSrc_multimin EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_multimin EXCLUDE REGEX ".*directional_minimize\.c")
+list(FILTER SRC_LIST_SubSrc_multimin EXCLUDE REGEX ".*linear_wrapper\.c")
+ADD_LIBRARY( multimin STATIC ${SRC_LIST_SubSrc_multimin} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -347,6 +353,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multifit_nlinear 
     INTERFACE multilarge 
     INTERFACE multilarge_nlinear 
+    INTERFACE multimin 
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
