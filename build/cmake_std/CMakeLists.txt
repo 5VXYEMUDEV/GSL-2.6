@@ -531,6 +531,14 @@ TARGET_LINK_LIBRARIES( test_matrix
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_min ${REPO_Src_DIR}/min/test*.c )
+list(FILTER SRC_LIST_TestSuite_min EXCLUDE REGEX ".*tests\.c")
+ADD_EXECUTABLE( test_min ${SRC_LIST_TestSuite_min} )
+TARGET_LINK_LIBRARIES( test_min 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_movstat
     ${REPO_Src_DIR}/movstat/test.c
 )
