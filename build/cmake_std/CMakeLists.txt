@@ -311,6 +311,10 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_rstat ${REPO_Src_DIR}/rstat/*.c )
 list(FILTER SRC_LIST_SubSrc_rstat EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( rstat STATIC ${SRC_LIST_SubSrc_rstat} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_siman ${REPO_Src_DIR}/siman/*.c )
+list(FILTER SRC_LIST_SubSrc_siman EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( siman STATIC ${SRC_LIST_SubSrc_siman} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_sort ${REPO_Src_DIR}/sort/*.c )
 list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*_source\.c")
@@ -404,6 +408,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE rng 
     INTERFACE roots
     INTERFACE rstat
+    INTERFACE siman
     INTERFACE sort 
     INTERFACE specfunc 
     INTERFACE statistics
@@ -787,6 +792,13 @@ TARGET_LINK_LIBRARIES( test_roots
 file(GLOB_RECURSE SRC_LIST_TestSuite_rstat ${REPO_Src_DIR}/rstat/test*.c )
 ADD_EXECUTABLE( test_rstat ${SRC_LIST_TestSuite_rstat} )
 TARGET_LINK_LIBRARIES( test_rstat 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_siman ${REPO_Src_DIR}/siman/test*.c )
+ADD_EXECUTABLE( test_siman ${SRC_LIST_TestSuite_siman} )
+TARGET_LINK_LIBRARIES( test_siman 
     PRIVATE test 
     PRIVATE gsl 
 )
