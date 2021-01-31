@@ -252,6 +252,12 @@ list(FILTER SRC_LIST_SubSrc_multimin EXCLUDE REGEX ".*directional_minimize\.c")
 list(FILTER SRC_LIST_SubSrc_multimin EXCLUDE REGEX ".*linear_wrapper\.c")
 ADD_LIBRARY( multimin STATIC ${SRC_LIST_SubSrc_multimin} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multiroots ${REPO_Src_DIR}/multiroots/*.c )
+list(FILTER SRC_LIST_SubSrc_multiroots EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_multiroots EXCLUDE REGEX ".*dogleg\.c")
+list(FILTER SRC_LIST_SubSrc_multiroots EXCLUDE REGEX ".*enorm\.c")
+ADD_LIBRARY( multiroots STATIC ${SRC_LIST_SubSrc_multiroots} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -354,6 +360,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multilarge 
     INTERFACE multilarge_nlinear 
     INTERFACE multimin 
+    INTERFACE multiroots
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
