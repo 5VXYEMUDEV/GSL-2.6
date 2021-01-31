@@ -203,6 +203,7 @@ list(FILTER SRC_LIST_SubSrc_matrix EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( matrix STATIC ${SRC_LIST_SubSrc_matrix} )
 TARGET_LINK_LIBRARIES( matrix PRIVATE blas)
 TARGET_LINK_LIBRARIES( matrix PRIVATE block)
+TARGET_LINK_LIBRARIES( matrix PRIVATE err)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_min ${REPO_Src_DIR}/min/*.c )
 list(FILTER SRC_LIST_SubSrc_min EXCLUDE REGEX ".*test.*")
@@ -366,7 +367,6 @@ TARGET_LINK_LIBRARIES( vector PRIVATE block)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_wavelet ${REPO_Src_DIR}/wavelet/*.c )
 list(FILTER SRC_LIST_SubSrc_wavelet EXCLUDE REGEX ".*test.*")
-# list(FILTER SRC_LIST_SubSrc_wavelet EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( wavelet STATIC ${SRC_LIST_SubSrc_wavelet} )
 
 SET ( SRC_LIST_LIB_GSL
