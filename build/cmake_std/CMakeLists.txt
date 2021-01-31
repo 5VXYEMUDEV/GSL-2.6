@@ -364,6 +364,11 @@ ADD_LIBRARY( vector STATIC ${SRC_LIST_SubSrc_vector} )
 TARGET_LINK_LIBRARIES( vector PRIVATE blas)
 TARGET_LINK_LIBRARIES( vector PRIVATE block)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_wavelet ${REPO_Src_DIR}/wavelet/*.c )
+list(FILTER SRC_LIST_SubSrc_wavelet EXCLUDE REGEX ".*test.*")
+# list(FILTER SRC_LIST_SubSrc_wavelet EXCLUDE REGEX ".*_source\.c")
+ADD_LIBRARY( wavelet STATIC ${SRC_LIST_SubSrc_wavelet} )
+
 SET ( SRC_LIST_LIB_GSL
     ${SRC_LIST_SubSrc_blas}
     ${SRC_LIST_SubSrc_block}
@@ -431,6 +436,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE sum 
     INTERFACE sys 
     INTERFACE vector 
+    INTERFACE wavelet
 )
 
 # ===========================================================================
@@ -876,6 +882,13 @@ SET ( SRC_LIST_TestSuite_vector
 )
 ADD_EXECUTABLE( test_vector ${SRC_LIST_TestSuite_vector} )
 TARGET_LINK_LIBRARIES( test_vector 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_wavelet ${REPO_Src_DIR}/wavelet/test*.c )
+ADD_EXECUTABLE( test_wavelet ${SRC_LIST_TestSuite_wavelet} )
+TARGET_LINK_LIBRARIES( test_wavelet 
     PRIVATE test 
     PRIVATE gsl 
 )
