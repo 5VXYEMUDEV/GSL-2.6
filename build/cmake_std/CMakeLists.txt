@@ -845,6 +845,13 @@ TARGET_LINK_LIBRARIES( test_spblas
     PRIVATE gsl 
 )
 
+file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/specfunc/test*.c )
+ADD_EXECUTABLE( test_specfunc ${SRC_LIST_TestSuite_specfunc} )
+TARGET_LINK_LIBRARIES( test_specfunc 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 file(GLOB_RECURSE SRC_LIST_TestSuite_splinalg ${REPO_Src_DIR}/splinalg/test*.c )
 ADD_EXECUTABLE( test_splinalg ${SRC_LIST_TestSuite_splinalg} )
 TARGET_LINK_LIBRARIES( test_splinalg 
@@ -852,9 +859,11 @@ TARGET_LINK_LIBRARIES( test_splinalg
     PRIVATE gsl 
 )
 
-file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/specfunc/test*.c )
-ADD_EXECUTABLE( test_specfunc ${SRC_LIST_TestSuite_specfunc} )
-TARGET_LINK_LIBRARIES( test_specfunc 
+SET ( SRC_LIST_TestSuite_spmatrix
+    ${REPO_Src_DIR}/spmatrix/test.c
+)
+ADD_EXECUTABLE( test_spmatrix ${SRC_LIST_TestSuite_spmatrix} )
+TARGET_LINK_LIBRARIES( test_spmatrix 
     PRIVATE test 
     PRIVATE gsl 
 )
