@@ -267,6 +267,10 @@ list(FILTER SRC_LIST_SubSrc_ntuple EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( ntuple STATIC ${SRC_LIST_SubSrc_ntuple} )
 TARGET_LINK_LIBRARIES( ntuple PRIVATE histogram)
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_ode_initval ${REPO_Src_DIR}/ode-initval/*.c )
+list(FILTER SRC_LIST_SubSrc_ode_initval EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( ode_initval STATIC ${SRC_LIST_SubSrc_ode_initval} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -372,6 +376,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multiroots
     INTERFACE multiset
     INTERFACE ntuple
+    INTERFACE ode_initval
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
@@ -682,6 +687,15 @@ SET ( SRC_LIST_TestSuite_ntuple
 )
 ADD_EXECUTABLE( test_ntuple ${SRC_LIST_TestSuite_ntuple} )
 TARGET_LINK_LIBRARIES( test_ntuple 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_ode_initval
+    ${REPO_Src_DIR}/ode-initval/test.c
+)
+ADD_EXECUTABLE( test_ode_initval ${SRC_LIST_TestSuite_ode_initval} )
+TARGET_LINK_LIBRARIES( test_ode_initval 
     PRIVATE test 
     PRIVATE gsl 
 )
