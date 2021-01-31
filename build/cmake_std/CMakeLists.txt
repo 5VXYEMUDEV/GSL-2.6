@@ -265,6 +265,7 @@ ADD_LIBRARY( multiset STATIC ${SRC_LIST_SubSrc_multiset} )
 file(GLOB_RECURSE SRC_LIST_SubSrc_ntuple ${REPO_Src_DIR}/ntuple/*.c )
 list(FILTER SRC_LIST_SubSrc_ntuple EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( ntuple STATIC ${SRC_LIST_SubSrc_ntuple} )
+TARGET_LINK_LIBRARIES( ntuple PRIVATE histogram)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
