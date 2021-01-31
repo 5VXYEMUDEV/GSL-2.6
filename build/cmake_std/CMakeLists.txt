@@ -619,6 +619,15 @@ TARGET_LINK_LIBRARIES( test_multilarge
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_multilarge_nlinear
+    ${REPO_Src_DIR}/multilarge_nlinear/test.c
+)
+ADD_EXECUTABLE( test_multilarge_nlinear ${SRC_LIST_TestSuite_multilarge_nlinear} )
+TARGET_LINK_LIBRARIES( test_multilarge_nlinear 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )
