@@ -208,6 +208,10 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_min ${REPO_Src_DIR}/min/*.c )
 list(FILTER SRC_LIST_SubSrc_min EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( min STATIC ${SRC_LIST_SubSrc_min} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_monte ${REPO_Src_DIR}/monte/*.c )
+list(FILTER SRC_LIST_SubSrc_monte EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( monte STATIC ${SRC_LIST_SubSrc_monte} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_movstat ${REPO_Src_DIR}/movstat/*.c )
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_movstat EXCLUDE REGEX ".*deque\.c")
@@ -310,6 +314,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE linalg
     INTERFACE matrix
     INTERFACE min 
+    INTERFACE monte 
     INTERFACE movstat 
     INTERFACE permutation 
     INTERFACE poly 
@@ -535,6 +540,15 @@ file(GLOB_RECURSE SRC_LIST_TestSuite_min ${REPO_Src_DIR}/min/test*.c )
 list(FILTER SRC_LIST_TestSuite_min EXCLUDE REGEX ".*tests\.c")
 ADD_EXECUTABLE( test_min ${SRC_LIST_TestSuite_min} )
 TARGET_LINK_LIBRARIES( test_min 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_monte
+    ${REPO_Src_DIR}/monte/test.c
+)
+ADD_EXECUTABLE( test_monte ${SRC_LIST_TestSuite_monte} )
+TARGET_LINK_LIBRARIES( test_monte 
     PRIVATE test 
     PRIVATE gsl 
 )
