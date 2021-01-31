@@ -260,7 +260,7 @@ ADD_LIBRARY( multiroots STATIC ${SRC_LIST_SubSrc_multiroots} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_multiset ${REPO_Src_DIR}/multiset/*.c )
 list(FILTER SRC_LIST_SubSrc_multiset EXCLUDE REGEX ".*test.*")
-ADD_LIBRARY( multiset STATIC ${SRC_LIST_SubSrc_multiroots} )
+ADD_LIBRARY( multiset STATIC ${SRC_LIST_SubSrc_multiset} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
