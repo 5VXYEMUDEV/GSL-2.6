@@ -244,6 +244,7 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_multilarge_nlinear ${REPO_Src_DIR}/multilarge_
 list(FILTER SRC_LIST_SubSrc_multilarge_nlinear EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_multilarge_nlinear EXCLUDE REGEX ".*common\.c")
 ADD_LIBRARY( multilarge_nlinear STATIC ${SRC_LIST_SubSrc_multilarge_nlinear} )
+TARGET_LINK_LIBRARIES( multilarge_nlinear PRIVATE multifit)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
