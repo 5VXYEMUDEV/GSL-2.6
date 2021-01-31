@@ -236,6 +236,10 @@ list(FILTER SRC_LIST_SubSrc_multifit_nlinear EXCLUDE REGEX ".*common\.c")
 list(FILTER SRC_LIST_SubSrc_multifit_nlinear EXCLUDE REGEX ".*qrsolv\.c")
 ADD_LIBRARY( multifit_nlinear STATIC ${SRC_LIST_SubSrc_multifit_nlinear} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multilarge ${REPO_Src_DIR}/multilarge/*.c )
+list(FILTER SRC_LIST_SubSrc_multilarge EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( multilarge STATIC ${SRC_LIST_SubSrc_multilarge} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -335,6 +339,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE movstat 
     INTERFACE multifit 
     INTERFACE multifit_nlinear 
+    INTERFACE multilarge 
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
@@ -595,6 +600,15 @@ SET ( SRC_LIST_TestSuite_multifit_nlinear
 )
 ADD_EXECUTABLE( test_multifit_nlinear ${SRC_LIST_TestSuite_multifit_nlinear} )
 TARGET_LINK_LIBRARIES( test_multifit_nlinear 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_multilarge
+    ${REPO_Src_DIR}/multilarge/test.c
+)
+ADD_EXECUTABLE( test_multilarge ${SRC_LIST_TestSuite_multilarge} )
+TARGET_LINK_LIBRARIES( test_multilarge 
     PRIVATE test 
     PRIVATE gsl 
 )
