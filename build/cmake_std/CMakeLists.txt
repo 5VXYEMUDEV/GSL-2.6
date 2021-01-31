@@ -240,6 +240,11 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_multilarge ${REPO_Src_DIR}/multilarge/*.c )
 list(FILTER SRC_LIST_SubSrc_multilarge EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( multilarge STATIC ${SRC_LIST_SubSrc_multilarge} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multilarge_nlinear ${REPO_Src_DIR}/multilarge_nlinear/*.c )
+list(FILTER SRC_LIST_SubSrc_multilarge_nlinear EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_multilarge_nlinear EXCLUDE REGEX ".*common\.c")
+ADD_LIBRARY( multilarge_nlinear STATIC ${SRC_LIST_SubSrc_multilarge_nlinear} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -340,6 +345,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multifit 
     INTERFACE multifit_nlinear 
     INTERFACE multilarge 
+    INTERFACE multilarge_nlinear 
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
