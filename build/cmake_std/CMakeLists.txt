@@ -829,6 +829,13 @@ TARGET_LINK_LIBRARIES( test_sort
 #     PRIVATE gsl 
 # )
 
+# file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/splinalg/test*.c )
+# ADD_EXECUTABLE( test_splinalg ${SRC_LIST_TestSuite_specfunc} )
+# TARGET_LINK_LIBRARIES( test_splinalg 
+#     PRIVATE test 
+#     PRIVATE gsl 
+# )
+
 file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/specfunc/test*.c )
 ADD_EXECUTABLE( test_specfunc ${SRC_LIST_TestSuite_specfunc} )
 TARGET_LINK_LIBRARIES( test_specfunc 
