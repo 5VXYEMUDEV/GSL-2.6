@@ -834,12 +834,12 @@ TARGET_LINK_LIBRARIES( test_sort
     PRIVATE gsl 
 )
 
-# file(GLOB_RECURSE SRC_LIST_TestSuite_spblas ${REPO_Src_DIR}/spblas/test*.c )
-# ADD_EXECUTABLE( test_spblas ${SRC_LIST_TestSuite_spblas} )
-# TARGET_LINK_LIBRARIES( test_spblas 
-#     PRIVATE test 
-#     PRIVATE gsl 
-# )
+file(GLOB_RECURSE SRC_LIST_TestSuite_spblas ${REPO_Src_DIR}/spblas/test*.c )
+ADD_EXECUTABLE( test_spblas ${SRC_LIST_TestSuite_spblas} )
+TARGET_LINK_LIBRARIES( test_spblas 
+    PRIVATE test 
+    PRIVATE gsl 
+)
 
 # file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/splinalg/test*.c )
 # ADD_EXECUTABLE( test_splinalg ${SRC_LIST_TestSuite_specfunc} )
