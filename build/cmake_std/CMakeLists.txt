@@ -258,6 +258,10 @@ list(FILTER SRC_LIST_SubSrc_multiroots EXCLUDE REGEX ".*dogleg\.c")
 list(FILTER SRC_LIST_SubSrc_multiroots EXCLUDE REGEX ".*enorm\.c")
 ADD_LIBRARY( multiroots STATIC ${SRC_LIST_SubSrc_multiroots} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_multiset ${REPO_Src_DIR}/multiset/*.c )
+list(FILTER SRC_LIST_SubSrc_multiset EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( multiset STATIC ${SRC_LIST_SubSrc_multiroots} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*_source\.c")
@@ -361,6 +365,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE multilarge_nlinear 
     INTERFACE multimin 
     INTERFACE multiroots
+    INTERFACE multiset
     INTERFACE permutation 
     INTERFACE poly 
     INTERFACE randist 
@@ -653,6 +658,15 @@ TARGET_LINK_LIBRARIES( test_multimin
 file(GLOB_RECURSE SRC_LIST_TestSuite_multiroots ${REPO_Src_DIR}/multiroots/test*.c )
 ADD_EXECUTABLE( test_multiroots ${SRC_LIST_TestSuite_multiroots} )
 TARGET_LINK_LIBRARIES( test_multiroots 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+SET ( SRC_LIST_TestSuite_multiset
+    ${REPO_Src_DIR}/multiset/test.c
+)
+ADD_EXECUTABLE( test_multiset ${SRC_LIST_TestSuite_multiset} )
+TARGET_LINK_LIBRARIES( test_multiset 
     PRIVATE test 
     PRIVATE gsl 
 )
