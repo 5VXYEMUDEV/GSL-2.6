@@ -337,6 +337,11 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_splinalg ${REPO_Src_DIR}/splinalg/*.c )
 list(FILTER SRC_LIST_SubSrc_splinalg EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( splinalg STATIC ${SRC_LIST_SubSrc_splinalg} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_spmatrix ${REPO_Src_DIR}/spmatrix/*.c )
+list(FILTER SRC_LIST_SubSrc_spmatrix EXCLUDE REGEX ".*test.*")
+list(FILTER SRC_LIST_SubSrc_spmatrix EXCLUDE REGEX ".*_source\.c")
+ADD_LIBRARY( spmatrix STATIC ${SRC_LIST_SubSrc_spmatrix} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_statistics ${REPO_Src_DIR}/statistics/*.c )
 list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_statistics EXCLUDE REGEX ".*_source\.c")
@@ -421,6 +426,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE spblas
     INTERFACE specfunc 
     INTERFACE splinalg
+    INTERFACE spmatrix
     INTERFACE statistics
     INTERFACE sum 
     INTERFACE sys 
