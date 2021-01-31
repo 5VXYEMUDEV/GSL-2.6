@@ -320,6 +320,10 @@ list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*_source\.c")
 ADD_LIBRARY( sort STATIC ${SRC_LIST_SubSrc_sort} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_spblas ${REPO_Src_DIR}/spblas/*.c )
+list(FILTER SRC_LIST_SubSrc_spblas EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( spblas STATIC ${SRC_LIST_SubSrc_spblas} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_specfunc ${REPO_Src_DIR}/specfunc/*.c )
 list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_specfunc EXCLUDE REGEX ".*_eval.*\.c")
@@ -410,6 +414,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE rstat
     INTERFACE siman
     INTERFACE sort 
+    INTERFACE spblas
     INTERFACE specfunc 
     INTERFACE statistics
     INTERFACE sum 
@@ -811,6 +816,13 @@ TARGET_LINK_LIBRARIES( test_sort
     PRIVATE test 
     PRIVATE gsl 
 )
+
+# file(GLOB_RECURSE SRC_LIST_TestSuite_spblas ${REPO_Src_DIR}/spblas/test*.c )
+# ADD_EXECUTABLE( test_spblas ${SRC_LIST_TestSuite_spblas} )
+# TARGET_LINK_LIBRARIES( test_spblas 
+#     PRIVATE test 
+#     PRIVATE gsl 
+# )
 
 file(GLOB_RECURSE SRC_LIST_TestSuite_specfunc ${REPO_Src_DIR}/specfunc/test*.c )
 ADD_EXECUTABLE( test_specfunc ${SRC_LIST_TestSuite_specfunc} )
