@@ -590,6 +590,15 @@ TARGET_LINK_LIBRARIES( test_multifit
     PRIVATE gsl 
 )
 
+SET ( SRC_LIST_TestSuite_multifit_nlinear
+    ${REPO_Src_DIR}/multifit_nlinear/test.c
+)
+ADD_EXECUTABLE( test_multifit_nlinear ${SRC_LIST_TestSuite_multifit_nlinear} )
+TARGET_LINK_LIBRARIES( test_multifit_nlinear 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
 SET ( SRC_LIST_TestSuite_permutation
     ${REPO_Src_DIR}/permutation/test.c
 )
