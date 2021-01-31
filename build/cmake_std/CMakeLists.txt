@@ -303,6 +303,10 @@ file(GLOB_RECURSE SRC_LIST_SubSrc_rng ${REPO_Src_DIR}/rng/*.c )
 list(FILTER SRC_LIST_SubSrc_rng EXCLUDE REGEX ".*test.*")
 ADD_LIBRARY( rng STATIC ${SRC_LIST_SubSrc_rng} )
 
+file(GLOB_RECURSE SRC_LIST_SubSrc_roots ${REPO_Src_DIR}/roots/*.c )
+list(FILTER SRC_LIST_SubSrc_roots EXCLUDE REGEX ".*test.*")
+ADD_LIBRARY( roots STATIC ${SRC_LIST_SubSrc_roots} )
+
 file(GLOB_RECURSE SRC_LIST_SubSrc_sort ${REPO_Src_DIR}/sort/*.c )
 list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*test.*")
 list(FILTER SRC_LIST_SubSrc_sort EXCLUDE REGEX ".*_source\.c")
@@ -394,6 +398,7 @@ TARGET_LINK_LIBRARIES( gsl
     INTERFACE qrng
     INTERFACE randist 
     INTERFACE rng 
+    INTERFACE roots
     INTERFACE sort 
     INTERFACE specfunc 
     INTERFACE statistics
@@ -763,6 +768,13 @@ SET ( SRC_LIST_TestSuite_rng
 )
 ADD_EXECUTABLE( test_rng ${SRC_LIST_TestSuite_rng} )
 TARGET_LINK_LIBRARIES( test_rng 
+    PRIVATE test 
+    PRIVATE gsl 
+)
+
+file(GLOB_RECURSE SRC_LIST_TestSuite_roots ${REPO_Src_DIR}/roots/test*.c )
+ADD_EXECUTABLE( test_roots ${SRC_LIST_TestSuite_roots} )
+TARGET_LINK_LIBRARIES( test_roots 
     PRIVATE test 
     PRIVATE gsl 
 )
