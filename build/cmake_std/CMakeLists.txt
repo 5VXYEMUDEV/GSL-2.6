@@ -221,7 +221,7 @@ TARGET_LINK_LIBRARIES( movstat PRIVATE err)
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_multifit ${REPO_Src_DIR}/multifit/*.c )
 list(FILTER SRC_LIST_SubSrc_multifit EXCLUDE REGEX ".*test.*")
-ADD_LIBRARY( multifit STATIC ${SRC_LIST_SubSrc_multifit} 
+ADD_LIBRARY( multifit STATIC ${SRC_LIST_SubSrc_multifit} )
 
 file(GLOB_RECURSE SRC_LIST_SubSrc_permutation ${REPO_Src_DIR}/permutation/*.c )
 list(FILTER SRC_LIST_SubSrc_permutation EXCLUDE REGEX ".*test.*")
